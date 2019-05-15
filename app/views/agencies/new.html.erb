@@ -1,5 +1,25 @@
-<h1>Create a New Agency</h1>
+<div class='center grey-box'>
+  <h1>Create a New Agency</h1>
 
-<%= form_for(@agency) do |f| %>
+  <%= form_for(@agency) do |f| %>
+    <p><%= f.label :name %>
+    <%= f.text_field :name%></p><br>
 
-<% end %>
+    <p><%= f.label :address %>
+    <%= f.text_field :address %></p><br>
+
+    <p><%= f.label :phone_number %>
+    <%= f.text_field :phone_number %></p><br>
+
+    <p><%= f.label :country %>
+    <%= f.text_field :country %></p><br>
+
+    <p><%= f.label :language %>
+    <%= f.text_field :language %></p><br>
+
+    <p><%= f.label :password %>
+    <%= f.password_field :password %></p><br>
+
+    <p><%= f.submit %>
+  <% end %>
+</div>
