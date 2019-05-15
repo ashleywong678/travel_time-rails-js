@@ -1,6 +1,7 @@
 <%# Agency home page %>
 <div class='grey-box'>
-<h1 class='center'>Welcome <%= @agency.name %></h1>
-
-
+  <h1 class='center'>Welcome <%= @agency.name %></h1>
+    <br>
+  <%= link_to "Profile", agency_path(@agency)%>
+  
 </div>
