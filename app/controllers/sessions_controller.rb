@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   end
   
   def new #login view page 
-    @agency = Agency.new
+    # @agency = Agency.new
   end
 
   def create #logs user in
