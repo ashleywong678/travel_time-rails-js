@@ -1,4 +1,4 @@
 class Agency < ApplicationRecord
-has_secure_password
+  has_secure_password
 
 end
