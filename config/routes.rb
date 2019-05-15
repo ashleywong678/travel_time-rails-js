@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: 'sessions#welcome' #homepage
 
   get "/login", to: "sessions#new"
-  resources :sessions, only: [:create]
+  post "/login", to: "sessions#create"
 
   get "/logout", to: "sessions#destroy"
   delete "/logout", to: "sessions#destroy"

@@ -8,7 +8,6 @@ class SessionsController < ApplicationController
 
   def create #logs user in
     @agency = Agency.find_by(id: params[:agency][:id])
-    binding.pry
     if logged_in?
       redirect_to agency_path(current_user)
     elsif @agency && @agency.authenticate(params[:password])

@@ -1,7 +1,7 @@
 <div class='center grey-box'>
   <h1>Agency Login</h1>
 <br>
-  <%= form_tag(sessions_path) do%>
+  <%= form_tag(login_path) do%>
     <h5>Agency Name</h5>
     <%= collection_select(:agency, :id, Agency.all, :id, :name, prompt: true) %>
 
