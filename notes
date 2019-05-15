@@ -1,0 +1,22 @@
+agency => tours <=> customer 
+
+agency (user)
+
+
+tour
+id | country | date | 
+
+customer_tour
+id | customer_id | tour_id | (add another attribute custom to a customer)
+
+customer
+id | first_name | last_name | email  ....
+
+scope method- Tour.most_popular => order of tours by most popular or by how many customers have signed up
+
+omniauth- google (when putting in localhost into site, will get warning, ignore warning)
+
+nested routes
+  /tour/1/customer/1
+  /tour/:id/customer/new 
+
