@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get "/signup", to: "agencies#new"
 
   resources :agencies, only: [:create, :show]
+  get '/agencies/:id/main', to: 'agencies#main', as: 'agencies_main'
 
 end
 
