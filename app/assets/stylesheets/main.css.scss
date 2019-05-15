@@ -12,12 +12,16 @@ body{
 .nav-bar{
 
 }
-
 .logo{
-  width: 150px;
+  width: 140px;
 }
-
+.btn{
+  display: inline-block;
+  float: right;
+  background-color: #4cba76;
+  border-radius: 5em;
+}
 // <----- home page styling ----->
 .greeting{
-
+  text-align: center;
 }
