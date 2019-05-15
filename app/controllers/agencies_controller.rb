@@ -1,20 +1,29 @@
 class AgenciesController < ApplicationController
-  
-  def new
+    
+  def new #signup
     @agency = Agency.new
   end
   
-  def create
+  def create #signup
     @agency = Agency.create(agency_params)
     if @agency
       session[:user_id] = @agency.id
-      redirect_to @agency
+      redirect_to agencies_main_path(@agency)
     else
       render :new
     end
   end
 
-  def show
+  def main #agency's main page
+    @agency = Agency.find_by(id: params[:id])
+  end
+
+  def show #agency's profile page
+    if logged_in?
+      @agency = Agency.find_by(id: params[:id])
+    else
+      redirect_to login_path
+    end
   end
 
   def edit
