@@ -1,11 +1,13 @@
 class AgenciesController < ApplicationController
-  def show
-  end
-
+  
   def new
+    @agency = Agency.new
+  end
+  
+  def create
   end
 
-  def create
+  def show
   end
 
   def edit
