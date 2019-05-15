@@ -11,9 +11,8 @@ Rails.application.routes.draw do
 
   #agencies/new => sign up page
   get "/signup", to: "agencies#new"
-  post "/signup", to: "agencies#create"
 
-  resources :agencies, except: [:new, :create]
+  resources :agencies, only: [:create, :show]
 
 end
 
