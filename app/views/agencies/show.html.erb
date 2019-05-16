@@ -7,5 +7,7 @@
       <p><strong>Country:</strong> <%= @agency.country %></p>
       <p><strong>Main Language:</strong> <%= @agency.language %></p>
     </ul>
-    <%= link_to "Edit Profile", edit_agency_path(@agency), class: 'btn' %><br>
+    <%= link_to "Delete Account", agency_path(@agency), method: :delete, class: 'btn' %>
+    <%= link_to "Edit Profile", edit_agency_path(@agency), class: 'btn' %>
+    <br>
 </div>
