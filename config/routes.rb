@@ -23,6 +23,7 @@ end
 #           POST        /signin(.:format)              sessions#create
 # logout    GET         /logout(.:format)              sessions#destroy
 #           DELETE      /logout(.:format)              sessions#destroy
+# ------- agency routes ------
 # signup    GET         /signup(.:format)              agenciess#new
 #           POST      /signup(.:format)                agenciess#create
 # agencies   GET        /agencies(.:format)            agencies#index
@@ -31,3 +32,12 @@ end
 #             PATCH     /agencies/:id(.:format)        agencies#update
               # PUT    /agencies/:id(.:format)           agencies#update
               # DELETE /agencies/:id(.:format)           agencies#destroy
+# ------- tour routes --------------
+# tours           GET    /tours(.:format)                tours#index
+#                 POST   /tours(.:format)                tours#create
+# new_tour        GET    /tours/new(.:format)            tours#new
+# edit_tour       GET    /tours/:id/edit(.:format)       tours#edit
+# tour            GET    /tours/:id(.:format)            tours#show
+#                 PATCH  /tours/:id(.:format)            tours#update
+#                 PUT    /tours/:id(.:format)            tours#update
+#                 DELETE /tours/:id(.:format)            tours#destroy
