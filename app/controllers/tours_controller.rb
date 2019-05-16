@@ -1,5 +1,6 @@
 class ToursController < ApplicationController
   def index
+    @tours = Tours.all
   end
 
   def new
