@@ -5,8 +5,9 @@ class AgenciesController < ApplicationController
   end
   
   def create #signup
-    @agency = Agency.create(agency_params)
-    if @agency
+    @agency = Agency.new(agency_params)
+    # binding.pry
+    if @agency.save
       session[:user_id] = @agency.id
       redirect_to agencies_main_path(@agency)
     else
