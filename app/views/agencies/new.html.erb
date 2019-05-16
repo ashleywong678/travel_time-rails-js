@@ -10,7 +10,7 @@
     <%= f.text_field :address, placeholder: "Address" %></p><br>
 
     <p><%= f.label :phone_number %>
-    <%= f.phone_field :phone_number, placeholder: "Phone Number" %></p><br>
+    <%= f.telephone_field :phone_number, placeholder: "Phone Number" %></p><br>
 
     <p><%= f.label :country %>
     <%= f.text_field :country, placeholder: "Country" %></p><br>
@@ -21,7 +21,7 @@
     <p><%= f.label :password %>
     <%= f.password_field :password, placeholder: "Password" %></p><br>
 
-    <p><%= f.submit %>
+    <p><%= f.submit "Create Agency", class: 'btn center'%>
   <% end %>
   <br>
   <%= link_to "Have an account? Log in here!", login_path %>
