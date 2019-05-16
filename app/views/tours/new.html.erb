@@ -1,2 +1,18 @@
-<h1>Tours#new</h1>
-<p>Find me in app/views/tours/new.html.erb</p>
+<div class='grey-box center'>
+  <h1>Create a new Tour</h1>
+  <%= form_for(@tour) do |f| %>
+    <%= f.label :country %>
+    <%= f.text_field :country, placeholder: "Country visiting" %><br><br>
+
+    <%= f.label :date, "Start Date of Tour" %>
+    <%= f.date_field :date, placeholder: "Date" %><br><br>
+
+    <%= f.label :length, "Number of nights" %>
+    <%= f.number_field :length, placeholder: "Nights" %><br><br>
+
+    <%= f.label :price %>
+    <%= f.number_field :price, placeholder: "Price" %><br><br>
+    
+    <%= f.submit "Create Tour", class: 'btn' %><br>
+  <% end %>
+</div>
