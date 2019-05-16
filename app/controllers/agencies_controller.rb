@@ -31,7 +31,6 @@ class AgenciesController < ApplicationController
   end
 
   def update
-    # binding.pry
     @agency = Agency.find_by(id: params[:id])
     if logged_in? && @agency == current_user
       @agency.update(agency_params)
