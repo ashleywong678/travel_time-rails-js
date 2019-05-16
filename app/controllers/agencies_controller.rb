@@ -56,10 +56,3 @@ class AgenciesController < ApplicationController
   end
 
 end
-
-# "agency"=>{
-#   "name"=>"World Travel", 
-#   "address"=>"123 somewhere street", 
-#   "phone_number"=>"1234567890", 
-#   "country"=>"US", 
-#   "language"=>"English"}
