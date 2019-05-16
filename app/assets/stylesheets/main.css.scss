@@ -18,6 +18,9 @@ body{
   margin: 0 auto;
   width: 40%;
 }
+.right {
+  float: right;
+}
 
 
 // <----- nav bar ----->
@@ -29,11 +32,13 @@ body{
 }
 .btn{
   display: inline-block;
-  float: right;
   background-color: #4cba76;
   border-radius: 5em;
 }
 // <----- home page styling ----->
-.greeting{
+input {
+  padding: 7px;
+  border-radius: 9px;
+  width: auto;
   text-align: center;
 }

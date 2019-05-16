@@ -2,20 +2,20 @@
   <h1>Edit Profile</h1><br>
   <%= form_for(@agency) do |f| %>
     <p><%= f.label :name %>
-    <%= f.text_field :name%></p><br>
+    <%= f.text_field :name, placeholder: "Name"%></p><br>
 
     <p><%= f.label :address %>
-    <%= f.text_field :address %></p><br>
+    <%= f.text_field :address, placeholder: "Address" %></p><br>
 
     <p><%= f.label :phone_number %>
-    <%= f.phone_field :phone_number %></p><br>
+    <%= f.phone_field :phone_number, placeholder: "Phone Number" %></p><br>
 
     <p><%= f.label :country %>
-    <%= f.text_field :country %></p><br>
+    <%= f.text_field :country, placeholder: "Country" %></p><br>
 
     <p><%= f.label :language %>
-    <%= f.text_field :language %></p><br> 
-    
-    <p><%= f.submit %>
+    <%= f.text_field :language, placeholder: "Main Language Spoken" %></p><br> 
+
+    <p><%= f.submit 'Update Agency', :class => 'center btn' %>
   <% end %>
 </div>
