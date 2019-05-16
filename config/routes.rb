@@ -5,15 +5,15 @@ Rails.application.routes.draw do
 
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
-
   get "/logout", to: "sessions#destroy"
   delete "/logout", to: "sessions#destroy"
 
-  #agencies/new => sign up page
-  get "/signup", to: "agencies#new"
+  get "/signup", to: "agencies#new"   #agencies/new => sign up page
 
   resources :agencies, except: [:new]
   get '/agencies/:id/main', to: 'agencies#main', as: 'agencies_main'
+
+  resources :tours
 
 end
 
