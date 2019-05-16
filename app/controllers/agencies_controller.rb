@@ -27,6 +27,7 @@ class AgenciesController < ApplicationController
   end
 
   def edit
+    @agency = Agency.find_by(id: params[:id])
   end
 
   def update
