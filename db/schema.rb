@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2019_05_15_152614) do
     t.string "address"
     t.string "country"
     t.string "language"
-    t.integer "phone_number"
+    t.string "phone_number"
     t.string "password_digest"
   end
 

@@ -5,7 +5,7 @@ class CreateAgencies < ActiveRecord::Migration[5.2]
       t.string :address
       t.string :country
       t.string :language
-      t.integer :phone_number
+      t.string :phone_number
       t.string :password_digest
     end
   end
