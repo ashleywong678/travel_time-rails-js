@@ -1,2 +1,11 @@
 <%# Agency show page %>
-<h2><%= @agency.name %>'s profile</h2>
+<div class='grey-box'>
+  <h2 class='center'><%= @agency.name %>'s profile</h2><br>
+    <ul>
+      <p><strong>Address:</strong> <%= @agency.address %></p>
+      <p><strong>Phone Number:</strong> <%= @agency.phone_number %></p>
+      <p><strong>Country:</strong> <%= @agency.country %></p>
+      <p><strong>Main Language:</strong> <%= @agency.language %></p>
+    </ul>
+    <%= link_to "Edit Profile", edit_agency_path(@agency), class: 'btn' %><br>
+</div>
