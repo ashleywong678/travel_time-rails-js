@@ -33,6 +33,15 @@ class AgenciesController < ApplicationController
   def update
   end
 
+  def destroy
+    @agency = Agency.find_by(id: params[:id])
+    if @agency == current_user
+      @article.destroy
+    else
+      redirect_to root_path
+    end
+  end
+
   private
 
   def agency_params
