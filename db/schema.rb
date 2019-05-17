@@ -22,10 +22,12 @@ ActiveRecord::Schema.define(version: 2019_05_16_135314) do
   end
 
   create_table "tours", force: :cascade do |t|
+    t.string "title"
     t.string "country"
     t.date "date"
     t.integer "length"
     t.integer "price"
+    t.string "description"
     t.integer "agency_id"
   end
 
