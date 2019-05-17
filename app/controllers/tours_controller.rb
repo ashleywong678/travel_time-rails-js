@@ -1,7 +1,6 @@
 class ToursController < ApplicationController
   def index
-    #first - if check if url is nested (if there's params[agency_id])
-    if logged_in?
+    if params[:agency_id] && current_user.id == params[:agency_id].to_i
       @tours = current_user.tours
     else
       @tours = Tour.all
