@@ -1,5 +1,5 @@
 <div class='grey-box'>
-  <h1 class='center'>All Tours <% if current_user %>
+  <h1 class='center'>All Tours <% if params[:agency_id]%>
     for <%= current_user.name %>
     <% end %>
   </h1>
