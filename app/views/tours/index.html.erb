@@ -1,4 +1,11 @@
 <div class='grey-box'>
-  <h1>All Tours</h1>
-
+  <h1 class='center'>All Tours <% if current_user %>
+    for <%= current_user.name %>
+    <% end %>
+  </h1>
+  <ul>
+    <% @tours.each do |tour| %>
+      <p><%= link_to tour.title, tour_path(tour) %></p>
+    <% end %>
+  </ul>
 </div>
