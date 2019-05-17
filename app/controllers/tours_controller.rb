@@ -21,6 +21,8 @@ class ToursController < ApplicationController
       else
         render :new
       end
+    else
+      redirect_to root_path
     end
   end
 
