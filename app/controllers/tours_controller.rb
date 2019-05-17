@@ -36,7 +36,8 @@ class ToursController < ApplicationController
 
   def edit
     @tour = Tour.find_by(id: params[:id])
-    if logged_in? && @tour.agency == current_user
+    @agency = @tour.agency
+    if logged_in? && @agency == current_user
       render :edit
     else
       redirect_to root_path
