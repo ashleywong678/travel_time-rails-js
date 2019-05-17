@@ -22,7 +22,12 @@ body{
 .right {
   float: right;
 }
-
+p {
+  font-size: 18px;
+}
+li {
+  list-style-type: none;
+}
 
 // <----- nav bar -----> //
 .nav-bar{
