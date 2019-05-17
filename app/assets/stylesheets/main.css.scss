@@ -4,7 +4,8 @@
 body{
   background-image: url(/assets/beach.jpg);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
+  background-attachment: fixed;
 }
 .center{
   text-align: center;
@@ -37,11 +38,17 @@ body{
   border-radius: 5em;
   margin: 0px 5px;
 }
-// <----- home page styling -----> //
+// <----- form page styling -----> //
 input {
   padding: 5px;
   border-radius: 9px;
   width: auto;
   text-align: center;
   margin: 5px;
+}
+.large-width {
+  width: 50%;
+}
+.round-edge{
+border-radius: 9px;
 }
