@@ -1,6 +1,10 @@
 class ToursController < ApplicationController
   def index
-    @tours = Tour.all
+    if logged_in?
+      @tours = Tour.my_tours(current_user)
+    else
+      @tours = Tour.all
+    end
   end
 
   def new
