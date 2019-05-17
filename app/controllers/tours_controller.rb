@@ -1,7 +1,8 @@
 class ToursController < ApplicationController
   def index
+    #first - if check if url is nested (if there's params[agency_id])
     if logged_in?
-      @tours = Tour.my_tours(current_user)
+      @tours = current_user.tours
     else
       @tours = Tour.all
     end
@@ -41,6 +42,13 @@ class ToursController < ApplicationController
   end
 
   def destroy
+    @tour = Tour.find_by(id: params[:id])
+    if @tour && logged_in? && current_user == @tour.agency
+      @tour.destroy
+      redirect_to tours_path
+    else
+      redirect_to tours_path
+    end
   end
 
   private
