@@ -1,26 +1,5 @@
 <div class='grey-box center'>
   <h1>Create a New Tour</h1>
-  <%= form_for(@tour) do |f| %>
-    <%= hidden_field_tag 'agency_id', @agency.id %>
-
-    <%= f.label :title %>
-    <%= f.text_field :title, placeholder: "Name this tour..." %><br><br>
-
-    <%= f.label :country %>
-    <%= f.text_field :country, placeholder: "Destination Country" %><br><br>
-
-    <%= f.label :date, "Start Date of Tour" %>
-    <%= f.date_field :date, placeholder: "Date" %><br><br>
-
-    <%= f.label :length, "Number of nights" %>
-    <%= f.number_field :length, min: 1, placeholder: "Nights" %><br><br>
-
-    <%= f.label :price %>
-    <%= f.number_field :price, min: 1, placeholder: "Price in USD" %><br><br>
-    
-    <%= f.label :description %><br>
-    <%= f.text_area :description, rows: "8", class: 'large-width round-edge', placeholder: "Give a brief description: (eg: Itinerary, what's included, places of interest, etc...)" %><br><br>
-    
-    <%= f.submit "Create Tour", class: 'btn' %><br>
-  <% end %>
+  
+    <%= render 'form' %>
 </div>
