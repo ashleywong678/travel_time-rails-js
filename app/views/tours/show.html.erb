@@ -1,1 +1,15 @@
-<h1><%= @tour.title %></h1>
+<div class='grey-box'>
+  <h1 class='center'><%= @tour.title %></h1>
+  
+    <p><strong>Date: </strong> <%= @tour.date %></p>
+    <p><strong>Destination Country: </strong> <%= @tour.country %></p>
+    <p><strong>Number of Nights: </strong> <%= @tour.length %></p>
+    <p><strong>Price (in USD):  $</strong><%= @tour.price %></p>
+    <p><strong>Description:  </strong></p>
+      <p><%= @tour.description %></p>
+  <br>
+  <%= link_to "Edit Tour", edit_tour_path(@tour), class: 'btn' %>
+  <%= link_to "Delete Tour", tour_path(@tour), method: :delete, class: 'btn' %>
+  <%= link_to "My Tours", tours_path, class: 'btn' %>
+
+</div>
