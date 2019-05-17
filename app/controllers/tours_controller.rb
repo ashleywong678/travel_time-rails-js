@@ -1,4 +1,5 @@
 class ToursController < ApplicationController
+  
   def index
     if params[:agency_id] && current_user.id == params[:agency_id].to_i
       @tours = current_user.tours
@@ -45,6 +46,10 @@ class ToursController < ApplicationController
   end
 
   def update
+    binding.pry
+    @tour = Tour.find_by(id: params[:id])
+    @tour.update(tour_params)
+    redirect_to @tour
   end
 
   def destroy
