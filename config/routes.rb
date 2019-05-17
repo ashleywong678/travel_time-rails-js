@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   get "/signup", to: "agencies#new"   #agencies/new => sign up page
 
-  resources :agencies, except: [:new]
+  resources :agencies, except: [:new] do
+    resources :tours, only: [:index]
+  end
   get '/agencies/:id/main', to: 'agencies#main', as: 'agencies_main'
 
   resources :tours
@@ -32,6 +34,8 @@ end
 #             PATCH     /agencies/:id(.:format)        agencies#update
               # PUT    /agencies/:id(.:format)           agencies#update
               # DELETE /agencies/:id(.:format)           agencies#destroy
+# ------ tours index nested under agencies ------
+# agency_tours GET    /agencies/:agency_id/tours(.:format)  tours#index
 # ------- tour routes --------------
 # tours           GET    /tours(.:format)                tours#index
 #                 POST   /tours(.:format)                tours#create
