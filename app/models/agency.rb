@@ -1,6 +1,7 @@
 class Agency < ApplicationRecord
   has_secure_password
   has_many :tours
+  has_many :customers, through: :tours
 
   # devise :omniauthable, :omniauth_providers => [:google_oauth2]
 
