@@ -5,7 +5,15 @@
   </h1>
   <ul>
     <% @tours.each do |tour| %>
-      <p><%= link_to tour.title, tour_path(tour) %></p>
+      <p>
+        <% if !logged_in? %>
+        <%= link_to tour.agency.name, agency_path(tour.agency) %> - 
+        <%end%>
+       <%= link_to tour.title, tour_path(tour) %></p>
     <% end %>
   </ul>
+  <br>
+  <% if params[:agency_id] %>
+    <%= link_to "Create a Tour", new_tour_path, class: 'btn' %>
+  <% end %>
 </div>
