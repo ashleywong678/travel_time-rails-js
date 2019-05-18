@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2019_05_18_014112) do
 
   create_table "agencies", force: :cascade do |t|
     t.string "name"
+    t.string "email"
     t.string "address"
     t.string "country"
     t.string "language"
