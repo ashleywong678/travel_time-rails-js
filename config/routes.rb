@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
 
   get "/signup", to: "agencies#new"   #agencies/new => sign up page
+  get 'auth/google/callback', to: 'sessions#create'
+  # get '/auth/facebook/callback' => 'sessions#create'
 
   resources :agencies, except: [:new] do
     resources :tours, only: [:index]

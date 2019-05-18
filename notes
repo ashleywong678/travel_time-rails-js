@@ -31,4 +31,3 @@ nested routes
   /tour/1/customer/1   => see customer page from the tour page
   /tour/:id/customer/new   => create a customer that is automatically associated with the tour from tour page
 
-

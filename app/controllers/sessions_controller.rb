@@ -7,14 +7,22 @@ class SessionsController < ApplicationController
   end
 
   def create #logs user in
-    @agency = Agency.find_by(id: params[:agency][:id])
-    if logged_in?
-      redirect_to agencies_main_path(@agency)
-    elsif @agency && @agency.authenticate(params[:password])
+    if auth['uid']
+      agency = Agency.find_or_create_by(uid: auth['uid']) do |a|
+        a.name = auth['info']['name']
+      end
       session[:user_id] = @agency.id
       redirect_to agencies_main_path(@agency)
     else
-      render :new
+      @agency = Agency.find_by(id: params[:agency][:id])
+      if logged_in?
+        redirect_to agencies_main_path(@agency)
+      elsif @agency && @agency.authenticate(params[:password])
+        session[:user_id] = @agency.id
+        redirect_to agencies_main_path(@agency)
+      else
+        render :new
+      end
     end
   end
   
@@ -22,5 +30,11 @@ class SessionsController < ApplicationController
     session.clear
     redirect_to root_path
   end
+
+  private
+
+    def auth
+      request.env['omniauth.auth']
+    end
 
 end
