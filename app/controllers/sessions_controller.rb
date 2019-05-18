@@ -7,13 +7,6 @@ class SessionsController < ApplicationController
   end
 
   def create #logs user in
-    # if auth['uid']
-    #   agency = Agency.find_or_create_by(uid: auth['uid']) do |a|
-    #     a.name = auth['info']['name']
-    #   end
-    #   session[:user_id] = @agency.id
-    #   redirect_to agencies_main_path(@agency)
-    # else
       @agency = Agency.find_by(id: params[:agency][:id])
       if logged_in?
         redirect_to agencies_main_path(@agency)
@@ -23,7 +16,19 @@ class SessionsController < ApplicationController
       else
         render :new
       end
-    # end
+  end
+
+  def google_auth
+    if @agency = Agency.find_by(email: auth['info']['email'])
+      session[:user_id] = @agency.id
+      redirect_to agencies_main_path(@agency)
+    else
+      @agency = Agency.new(name: auth['info']['name'], email: auth['info']['email'], password: SecureRandom.hex)
+      if @agency.save
+        session[:user_id] = @agency.id
+        redirect_to agencies_main_path(@agency)
+      end
+    end
   end
   
   def destroy
