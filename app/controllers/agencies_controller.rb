@@ -19,11 +19,7 @@ class AgenciesController < ApplicationController
   end
 
   def show #agency's profile page
-    if logged_in?
-      @agency = Agency.find_by(id: params[:id])
-    else
-      redirect_to login_path
-    end
+    @agency = Agency.find_by(id: params[:id])
   end
 
   def edit
