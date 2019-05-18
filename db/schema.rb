@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_18_014112) do
+ActiveRecord::Schema.define(version: 2019_05_18_151536) do
 
   create_table "agencies", force: :cascade do |t|
     t.string "name"
@@ -23,6 +23,12 @@ ActiveRecord::Schema.define(version: 2019_05_18_014112) do
     t.string "uid"
     t.string "google_token"
     t.string "google_refresh_token"
+  end
+
+  create_table "customer_tours", force: :cascade do |t|
+    t.integer "tour_id"
+    t.integer "customer_id"
+    t.string "notes"
   end
 
   create_table "customers", force: :cascade do |t|
