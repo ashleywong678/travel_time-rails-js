@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root to: 'sessions#welcome' #homepage
@@ -10,8 +9,7 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
 
   get "/signup", to: "agencies#new"   #agencies/new => sign up page
-  get 'auth/google/callback', to: 'sessions#create'
-  # get '/auth/facebook/callback' => 'sessions#create'
+  get 'auth/:provider/callback', to: 'sessions#google_auth'
 
   resources :agencies, except: [:new] do
     resources :tours, only: [:index]
