@@ -2,21 +2,23 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root to: 'sessions#welcome' #homepage
-
+# --------- login/signup -------------
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   get "/logout", to: "sessions#destroy"
   delete "/logout", to: "sessions#destroy"
-
-  get "/signup", to: "agencies#new"   #agencies/new => sign up page
+  get "/signup", to: "agencies#new"
+# ------------- google omniauth ------------
   get 'auth/:provider/callback', to: 'sessions#google_auth'
-
+# ----------- agency ----------------
+  get '/agencies/:id/main', to: 'agencies#main', as: 'agencies_main'
   resources :agencies, except: [:new] do
     resources :tours, only: [:index]
   end
-  get '/agencies/:id/main', to: 'agencies#main', as: 'agencies_main'
-
-  resources :tours
+# ----------- tours -----------------
+  resources :tours do
+    resources :customers
+  end
 
 end
 
@@ -26,6 +28,7 @@ end
 #           POST        /signin(.:format)              sessions#create
 # logout    GET         /logout(.:format)              sessions#destroy
 #           DELETE      /logout(.:format)              sessions#destroy
+
 # ------- agency routes ------
 # signup    GET         /signup(.:format)              agenciess#new
 #           POST      /signup(.:format)                agenciess#create
@@ -35,8 +38,10 @@ end
 #             PATCH     /agencies/:id(.:format)        agencies#update
               # PUT    /agencies/:id(.:format)           agencies#update
               # DELETE /agencies/:id(.:format)           agencies#destroy
-# ------ tours index nested under agencies ------
+
+              # ------ tours index nested under agencies ------
 # agency_tours GET    /agencies/:agency_id/tours(.:format)  tours#index
+
 # ------- tour routes --------------
 # tours           GET    /tours(.:format)                tours#index
 #                 POST   /tours(.:format)                tours#create
@@ -46,3 +51,13 @@ end
 #                 PATCH  /tours/:id(.:format)            tours#update
 #                 PUT    /tours/:id(.:format)            tours#update
 #                 DELETE /tours/:id(.:format)            tours#destroy
+
+# ----- customers nested under tour -----
+# tour_customers   GET    /tours/:tour_id/customers(.:format)               customers#index
+#                  POST   /tours/:tour_id/customers(.:format)               customers#create
+#new_tour_customer  GET    /tours/:tour_id/customers/new(.:format)          customers#new
+#edit_tour_customer GET    /tours/:tour_id/customers/:id/edit(.:format)     customers#edit
+#tour_customer      GET    /tours/:tour_id/customers/:id(.:format)          customers#show
+#                   PATCH  /tours/:tour_id/customers/:id(.:format)          customers#update
+#                   PUT    /tours/:tour_id/customers/:id(.:format)          customers#update
+#                   DELETE /tours/:tour_id/customers/:id(.:format)          customers#destroy
