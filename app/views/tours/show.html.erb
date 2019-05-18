@@ -8,8 +8,8 @@
     <p><strong>Description:  </strong></p>
       <p><%= @tour.description %></p>
   <br>
+  <%= link_to "My Tours", agency_tours_path(@tour.agency), class: 'btn' %>
   <%= link_to "Edit Tour", edit_tour_path(@tour), class: 'btn' %>
   <%= link_to "Delete Tour", tour_path(@tour), method: :delete, class: 'btn' %>
-  <%= link_to "My Tours", tours_path, class: 'btn' %>
 
 </div>
