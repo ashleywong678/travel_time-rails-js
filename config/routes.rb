@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
 # ----------- tours -----------------
   resources :tours do
-    resources :customers
+    resources :customers, only: [:index, :new, :edit]
   end
 #---------- customers ---------
   resources :customers, only: [:index, :show]
