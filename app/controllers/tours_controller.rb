@@ -46,7 +46,6 @@ class ToursController < ApplicationController
   end
 
   def update
-    binding.pry
     @tour = Tour.find_by(id: params[:id])
     @tour.update(tour_params)
     redirect_to @tour
