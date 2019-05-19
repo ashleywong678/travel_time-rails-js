@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   resources :tours do
     resources :customers
   end
-
+#---------- customers ---------
+  resources :customers, only: [:index, :show]
 end
 
 # Prefix    Verb      URI Pattern                      Controller#Action
