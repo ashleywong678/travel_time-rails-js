@@ -17,10 +17,10 @@ Rails.application.routes.draw do
   end
 # ----------- tours -----------------
   resources :tours do
-    resources :customers, only: [:index, :new, :edit]
+    resources :customers, only: [:index, :new]
   end
 #---------- customers ---------
-  resources :customers, only: [:index, :show]
+  resources :customers
 end
 
 # Prefix    Verb      URI Pattern                      Controller#Action
@@ -40,7 +40,7 @@ end
               # PUT    /agencies/:id(.:format)           agencies#update
               # DELETE /agencies/:id(.:format)           agencies#destroy
 
-              # ------ tours index nested under agencies ------
+# ------ tours index nested under agencies ------
 # agency_tours GET    /agencies/:agency_id/tours(.:format)  tours#index
 
 # ------- tour routes --------------
@@ -54,11 +54,13 @@ end
 #                 DELETE /tours/:id(.:format)            tours#destroy
 
 # ----- customers nested under tour -----
-# tour_customers   GET    /tours/:tour_id/customers(.:format)               customers#index
-#                  POST   /tours/:tour_id/customers(.:format)               customers#create
-#new_tour_customer  GET    /tours/:tour_id/customers/new(.:format)          customers#new
-#edit_tour_customer GET    /tours/:tour_id/customers/:id/edit(.:format)     customers#edit
-#tour_customer      GET    /tours/:tour_id/customers/:id(.:format)          customers#show
-#                   PATCH  /tours/:tour_id/customers/:id(.:format)          customers#update
-#                   PUT    /tours/:tour_id/customers/:id(.:format)          customers#update
-#                   DELETE /tours/:tour_id/customers/:id(.:format)          customers#destroy
+# tour_customers      GET    /tours/:tour_id/customers(.:format)             customers#index
+# new_tour_customer   GET    /tours/:tour_id/customers/new(.:format)         customers#new
+# edit_tour_customer  GET    /tours/:tour_id/customers/:id/edit(.:format)    customers#edit
+
+# ------ customers ---------
+# customers   GET    /customers(.:format)        customers#index
+#             POST   /customers(.:format)        customers#create
+# customer    GET    /customers/:id(.:format)    customers#show
+            # PATCH  /customers/:id(.:format)    customers#update
+            # PUT    /customers/:id(.:format)    customers#update
