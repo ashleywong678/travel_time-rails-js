@@ -1,11 +1,10 @@
 class CustomersController < ApplicationController
   def index
-    # binding.pry
-    # if params[:tour_id] && logged_in?
-    #   @customers = Customer.find_by(
-    # else
+    if params[:tour_id] && logged_in?
+      @customers = Tour.find_by(id: params[:tour_id]).customers
+    else
       @customers = Customer.all
-    # end
+    end
   end
 
   def new
@@ -28,6 +27,9 @@ class CustomersController < ApplicationController
   end
 
   def edit
+    @customer = Customer.find_by(id: params[:id])
+    @tours = @customer.tours
+    @all_tours = Tour.all
   end
 
   def update
