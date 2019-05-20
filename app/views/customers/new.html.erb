@@ -1,2 +1,10 @@
-<h1>Customers#new</h1>
-<p>Find me in app/views/customers/new.html.erb</p>
+<div class='grey-box center'>
+  <h1>Create a new Customer 
+    <% if params[:tour_id] %>
+      for <br><%= @tour.title %> on <%= @tour.date%>
+    <% end %>
+  </h1>
+  <br>
+  <%= render 'form' %>
+  
+</div>
