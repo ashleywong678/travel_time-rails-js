@@ -3,11 +3,11 @@ class Customer < ApplicationRecord
   has_many :tours, through: :customer_tours
   has_many :agencies, through: :tours
 
-  def fullname
+  def full_name
     "#{self.first_name} #{self.last_name}"
   end
 
-  def formalname
+  def formal_name
     "#{self.last_name}, #{self.first_name}"
   end
   
