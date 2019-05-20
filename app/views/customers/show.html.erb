@@ -1,2 +1,19 @@
-<h1>Customers#show</h1>
-<p>Find me in app/views/customers/show.html.erb</p>
+<div class='grey-box '>
+  <h1 class='center'><%= @customer.formal_name %></h1>
+  
+  <p><strong>Email: <%= @customer.email %></strong></p>
+  <p><strong>Phone number: <%= @customer.phone_number%></strong></p>
+  <p><strong>City: <%= @customer.city %></strong></p>
+  <p><strong>Country: <%= @customer.country %></strong></p>
+  <p><strong>Prefered Language: <%= @customer.language %></strong></p>
+  <p><strong>Signed up tours: </strong></p>
+    <ul>
+      <% @customer.tours.each do |tour| %>
+        <li>
+          <%= link_to tour.title, tour_path(tour) %> by <%= link_to tour.agency.name, agency_path(tour.agency)%>
+        </li>
+      <% end %>
+    </ul>
+
+  <%= link_to "Edit this customer", edit_customer_path(@customer), class: 'btn' %>
+</div>
