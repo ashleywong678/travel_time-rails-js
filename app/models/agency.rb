@@ -2,8 +2,7 @@ class Agency < ApplicationRecord
   has_secure_password
   has_many :tours
   has_many :customers, through: :tours
-
-  # devise :omniauthable, :omniauth_providers => [:google_oauth2]
+  validates :name, :email, presence: true
 
   def self.from_omniauth(auth)
    # Creates a new user only if it doesn't exist
