@@ -25,9 +25,9 @@ has_many agency through tours
 
 scope method- Tour.most_popular => gives order of tours by most popular or by how many customers have signed up
 
-omniauth- google (when putting in /localhost3000 into site, will get warning, ignore warning)
+X omniauth- google (when putting in /localhost3000 into site, will get warning, ignore warning)
 
 nested routes
-  /tour/1/customer/1   => see customer page from the tour page
+  /tour/1/customers   => see all customers from the tour page
   /tour/:id/customer/new   => create a customer that is automatically associated with the tour from tour page
 
