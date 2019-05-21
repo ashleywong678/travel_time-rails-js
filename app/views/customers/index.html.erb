@@ -1,11 +1,15 @@
 <div class='grey-box'>
-  <h1 class='center'>Customers</h1>
+  <h1 class='center'>Customer Accounts</h1>
   <br>
   <ul>
     <% @customers.each do |customer| %>
       <li><%= link_to customer.full_name, customer_path(customer) %></li>
     <% end %>
   </ul>
-
-  <%= link_to "Create a Customer", new_tour_customer_path(params[:tour_id]), class: 'btn'%>
+  
+  <% if params[:tour_id] %>
+    <%= link_to "Create a Customer", new_tour_customer_path(params[:tour_id]), class: 'btn'%>
+  <%else%>
+    <%= link_to "Create a Customer", new_customer_path, class: 'btn'%>
+  <%end%>
 </div>
