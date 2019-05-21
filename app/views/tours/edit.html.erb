@@ -1,5 +1,18 @@
 <div class='grey-box center'>
   <h1>Edit Tour</h1>
 
+  <% if @tour.errors.any? %>
+  <div id="error_explanation">
+    <h5><%= pluralize(@tour.errors.count, "error") %> prohibited this tour from being saved:</h5>
+ 
+    <ul>
+    <% @tour.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
     <%= render 'form' %>
 </div>
