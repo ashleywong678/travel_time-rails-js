@@ -31,6 +31,9 @@
       <%end%>
   <%end%>
 
+  <%= label_tag :notes %><br>
+  <%= text_area_tag :notes, nil, rows: "4", class: 'large-width round-edge', placeholder: "If applicable, add any specific information the tour agency should know. Eg: Allergies, disabilities, restrictions, etc..." %><br>
+
   <br>
   <%= f.submit %>
 <% end %>
