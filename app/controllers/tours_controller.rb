@@ -48,7 +48,11 @@ class ToursController < ApplicationController
   def update
     @tour = Tour.find_by(id: params[:id])
     @tour.update(tour_params)
-    redirect_to @tour
+    if @tour.errors.any?
+      render :edit
+    else
+      redirect_to @tour
+    end
   end
 
   def destroy
