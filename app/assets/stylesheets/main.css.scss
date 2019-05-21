@@ -11,10 +11,11 @@ body{
   text-align: center;
   justify-content: center;
   align-items: center;
+  margin: auto;
 }
 .grey-box{
   padding: 20px;
-  background: rgba(200,200,200,0.6);
+  background: #c8c8c899;
   border-radius: 7px;
   margin: 0 auto;
   width: 55%;
@@ -57,9 +58,22 @@ input[type=submit]{
 .large-width {
   width: 50%;
 }
-.round-edge{
+.round-edge {
 border-radius: 9px;
 }
-.checkbox{
+.checkbox {
   padding: 2px;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+#error_explanation{
+  color: red;
 }
