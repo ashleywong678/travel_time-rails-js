@@ -2,17 +2,11 @@
 <div class='center grey-box'>
   <h1>Agency Login</h1>
 
-  <% if @tour.errors.any? %>
-  <div id="error_explanation">
-    <h5><%= pluralize(@tour.errors.count, "error") %> prohibited this tour from being saved:</h5>
- 
-    <ul>
-    <% @tour.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
+    <div class='red'>
+      <% flash.each do |key, value| %>
+        <div><%= value %></div>
+      <% end %>
+    </div>
 
 <br>
   <%= form_tag(login_path) do%>
