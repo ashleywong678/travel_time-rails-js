@@ -1,8 +1,15 @@
 <div class='center grey-box'>
+
   <h1>Edit Profile</h1><br>
+
+  <%= render 'error' %>
+  
   <%= form_for(@agency) do |f| %>
     <p><%= f.label :name %>
     <%= f.text_field :name, placeholder: "Name"%></p><br>
+
+    <p><%= f.label :email %>
+    <%= f.text_field :email, placeholder: "Email"%></p><br>
 
     <p><%= f.label :address %>
     <%= f.text_field :address, placeholder: "Address" %></p><br>

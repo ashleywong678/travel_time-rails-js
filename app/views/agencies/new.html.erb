@@ -2,6 +2,8 @@
 <div class='center grey-box'>
   <h1>Create a New Agency</h1>
 
+  <%= render 'error' %>
+
   <%= form_for(@agency) do |f| %>
     <p><%= f.label :name %>
     <%= f.text_field :name, placeholder: "Name" %></p><br>
