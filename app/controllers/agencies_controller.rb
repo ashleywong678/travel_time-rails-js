@@ -1,5 +1,6 @@
 class AgenciesController < ApplicationController
-    
+  before_action :require_login, except: [:new, :create]
+
   def new #signup
     @agency = Agency.new
   end
@@ -15,20 +16,20 @@ class AgenciesController < ApplicationController
   end
 
   def main #agency's main page
-    @agency = Agency.find_by(id: params[:id])
+    set_agency
   end
 
   def show #agency's profile page
-    @agency = Agency.find_by(id: params[:id])
+    set_agency
   end
 
   def edit
-    @agency = Agency.find_by(id: params[:id])
+    set_agency
   end
 
   def update
-    @agency = Agency.find_by(id: params[:id])
-    if logged_in? && @agency == current_user
+    set_agency
+    if @agency == current_user
       @agency.update(agency_params)
       if @agency.errors.any?
         render :edit
@@ -41,7 +42,7 @@ class AgenciesController < ApplicationController
   end
 
   def destroy
-    @agency = Agency.find_by(id: params[:id])
+    set_agency
     if @agency == current_user
       @article.destroy
     else
@@ -53,6 +54,17 @@ class AgenciesController < ApplicationController
 
   def agency_params
     params.require(:agency).permit(:name, :password, :address, :phone_number, :country, :language)
+  end
+
+  def require_login
+    unless logged_in?
+      flash[:message] = "Please login or signup."
+      redirect_to root_path
+    end
+  end
+
+  def set_agency
+    @agency = Agency.find_by(id: params[:id])
   end
 
 end
