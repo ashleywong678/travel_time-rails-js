@@ -30,7 +30,11 @@ class AgenciesController < ApplicationController
     @agency = Agency.find_by(id: params[:id])
     if logged_in? && @agency == current_user
       @agency.update(agency_params)
-      redirect_to @agency
+      if @agency.errors.any?
+        render :edit
+      else
+        redirect_to @agency
+      end
     else
       redirect_to root_path
     end
