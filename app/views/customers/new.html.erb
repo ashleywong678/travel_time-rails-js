@@ -4,6 +4,9 @@
       for <br><%= @tour.title %> on <%= @tour.date%>
     <% end %>
   </h1>
+
+  <%= render 'error' %>
+  
   <br>
   <%= form_for(@customer) do |f| %>
   <%= hidden_field_tag 'tour_id', @tour.id if @tour %>

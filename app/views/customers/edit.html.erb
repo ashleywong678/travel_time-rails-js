@@ -1,6 +1,8 @@
 <div class='grey-box center'>
   <h1>Edit <%= @customer.full_name %></h1>
   
+  <%= render 'error' %>
+  
   <%= form_for(@customer) do |f| %>
 
   <%= f.label :first_name %>

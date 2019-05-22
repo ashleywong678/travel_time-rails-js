@@ -1,5 +1,5 @@
 <div class='grey-box '>
-  <h1 class='center'><%= @customer.formal_name %></h1>
+  <h1 class='center'><%= @customer.full_name %></h1>
   
   <p><strong>Email: <%= @customer.email %></strong></p>
   <p><strong>Phone number: <%= @customer.phone_number%></strong></p>
@@ -7,13 +7,18 @@
   <p><strong>Country: <%= @customer.country %></strong></p>
   <p><strong>Prefered Language: <%= @customer.language %></strong></p>
   <p><strong>Signed up tours: </strong></p>
+
     <ul>
       <% @customer.tours.each do |tour| %>
         <li>
           <%= link_to tour.title, tour_path(tour) %> by <%= link_to tour.agency.name, agency_path(tour.agency)%>
+          <% if c = CustomerTour.find_by(customer_id: @customer, tour_id: tour).notes %>       
+            <br>Notes: <%= c %>
+          <%end%>
         </li>
       <% end %>
     </ul>
 
-  <%= link_to "Edit this customer", edit_customer_path(@customer), class: 'btn' %>
+  <%= link_to "Edit this Customer", edit_customer_path(@customer), class: 'btn' %>
+  <%= link_to "Delete Customer", customer_path(@customer), method: :delete, class: 'btn' %>
 </div>
