@@ -48,12 +48,13 @@ li {
 input {
   padding: 5px;
   border-radius: 9px;
-  width: auto;
+  width: 45%;
   text-align: center;
-  margin: 5px;
+  margin: 3px;
 }
 input[type=submit]{
   background-color: #4cba76;
+  width: auto;
 }
 .large-width {
   width: 50%;
