@@ -11,7 +11,7 @@ class Tour < ApplicationRecord
   validates :todays_date, confirmation: true
 
   def todays_date #check if :date is after current date
-    if date.present?
+    if date.past? || date.today?
       errors[:date] << "date must be in the future"
     end
   end
