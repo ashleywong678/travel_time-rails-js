@@ -1,0 +1,11 @@
+<% if @agency.errors.any? %>
+  <div id="error_explanation">
+    <h5><%= pluralize(@agency.errors.count, "error") %> prohibited this agency from being saved:</h5>
+ 
+    <ul>
+    <% @agency.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
