@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2019_05_19_132433) do
   create_table "customer_tours", force: :cascade do |t|
     t.integer "tour_id"
     t.integer "customer_id"
-    t.string "notes"
+    t.boolean "canceled", default: false
   end
 
   create_table "customers", force: :cascade do |t|
