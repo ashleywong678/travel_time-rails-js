@@ -1,5 +1,5 @@
 <%= form_for(@tour) do |f| %>
-    <%= hidden_field_tag 'agency_id', @agency.id %>
+    <%= hidden_field_tag 'agency_id', @tour.agency.id %>
 
     <%= f.label :title %>
     <%= f.text_field :title, placeholder: "Name this tour..." %><br><br>
