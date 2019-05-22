@@ -27,7 +27,7 @@ scope method- Tour.most_popular => gives order of tours by most popular or by ho
 
 X omniauth- google (when putting in /localhost3000 into site, will get warning, ignore warning)
 
-nested routes
+X nested routes
   /tour/1/customers   => see all customers from the tour page
   /tour/:id/customer/new   => create a customer that is automatically associated with the tour from tour page
 
