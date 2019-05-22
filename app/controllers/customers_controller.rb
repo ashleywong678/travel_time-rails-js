@@ -9,36 +9,38 @@ class CustomersController < ApplicationController
   end
 
   def new
-    if params[:tour_id]
-      @tour = Tour.find_by(id: params[:tour_id]) if params[:tour_id]
-      @customer = @tour.customers.build
-    else
+    if params[:tour_id]   #if it's nested
+      @tour = Tour.find_by(id: params[:tour_id])
+      @customer = @tour.customers.build   #need associated objects
+      @tours = Tour.all
+    else    #if it's not nested
       @customer = Customer.new
+      @tours = Tour.all
     end
   end
 
   def create
-    if params[:tour_id]
-    @tour = Tour.find_by(id: params[:tour_id])
-    @customer = Customer.create(customer_params)
+    @customer = Customer.find_by(customer_params) #if customer already exists
     if @customer
-        ct = @tour.customer_tours.build(customer_id: @customer.id, notes: params[:notes])
-        ct.save
-        redirect_to @customer
+      flash[:message] = "Customer already exists"
+      redirect_to customers_path        #send to customer index
+
+    elsif !@customer    #if customer doesn't already exist
+      @customer = Customer.create(customer_params)   #create customer
+      if params[:customer][:tour_ids]  #if the form is nested
+        @tour = Tour.find_by(id: params[:customer][:tour_id])
+        customer_tour = @tour.customer_tours.build(customer_id: @customer.id)    #creat a join table between @tour and @customer
+        customer_tour.save    #save b/c build doesn't persist
       end
-    elsif
-      @customer = Customer.create(customer_params)
-      if @customer
-        redirect_to @customer
-      end
-    else
+      redirect_to @customer   #then go to customer show page
+
+    else    #if everythign fails...
       render :new
     end
   end
 
   def show
     @customer = Customer.find_by(id: params[:id])
-    @notes = @customer.customer_tours
   end
 
   def edit
@@ -47,22 +49,13 @@ class CustomersController < ApplicationController
   end
 
   def update
+    binding.pry
     @customer = Customer.find_by(id: params[:id])
     @customer.update(customer_params)
-    if tours = params[:customer][:tour_ids] 
-      tours.each do |tour|
-        t = Tour.find_by(id: tour.to_i)
-        if t
-          # binding.pry
-          if !@customer.tours.include?(t)
-            ct = @customer.customer_tours.build(notes: params[:notes], tour_id: t.id) 
-            #notes not being added, need to fix
-            ct.save
-          end
-        end
-      end
+    if @customer.errors.any?
+      render :edit
+      redirect_to @customer
     end
-    redirect_to @customer
   end
 
   def destroy
