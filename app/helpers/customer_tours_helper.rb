@@ -1,0 +1,2 @@
+module CustomerToursHelper
+end
