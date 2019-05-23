@@ -11,6 +11,7 @@
   </head>
 
   <body>
+    <%# nav-bar %>
     <div class='nav-bar'>
       <a href='<%=root_path%>'><img class='logo' src='/assets/logo.png'></a>
         <%if logged_in?%>
@@ -22,7 +23,14 @@
       <% end %>
       <%= link_to "Browse all tours", tours_path, class: 'btn right' %>
     </div>
-
+    <%# flash messages if any %>
+    <div class='grey-box red center'>
+      <% flash.each do |key, value| %>
+        <div><%= value %></div>
+      <% end %>
+    </div>
+  
     <%= yield %>
+    
   </body>
 </html>
