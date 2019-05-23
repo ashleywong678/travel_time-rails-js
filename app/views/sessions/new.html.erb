@@ -2,16 +2,10 @@
 <div class='center grey-box'>
   <h1>Agency Login</h1>
 
-    <div class='red'>
-      <% flash.each do |key, value| %>
-        <div><%= value %></div>
-      <% end %>
-    </div>
-
 <br>
   <%= form_tag(login_path) do%>
     <h5>Agency Name</h5>
-    <%= collection_select(:agency, :id, Agency.all, :id, :name, prompt: true) %>
+    <%= collection_select(:agency, :id, @agencies, :id, :name, prompt: true) %>
 
     <h5>Password:</h5>
     <%= password_field_tag "password" %>
