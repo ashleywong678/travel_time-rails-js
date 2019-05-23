@@ -30,4 +30,3 @@ X omniauth- google (when putting in /localhost3000 into site, will get warning, 
 X nested routes
   /tour/1/customers   => see all customers from the tour page
   /tour/:id/customer/new   => create a customer that is automatically associated with the tour from tour page
-
