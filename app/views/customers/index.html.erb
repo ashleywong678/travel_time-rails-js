@@ -7,10 +7,6 @@
     <% end %>
   </ul>
   
-  <% if params[:tour_id] %>
-    <%= link_to "Create a Customer", new_tour_customer_path(params[:tour_id]), class: 'btn'%>
-  <%else%>
-    <%= link_to "Create a Customer", new_customer_path, class: 'btn'%>
-  <%end%>
+  <%= link_to "Create a Customer", new_customer_path, class: 'btn'%>
   <%= link_to "My Tours", agency_tours_path(current_user), class: 'btn' %>
 </div>
