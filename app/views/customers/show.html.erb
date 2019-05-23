@@ -12,8 +12,12 @@
       <% @customer.tours.each do |tour| %>
         <li>
           <%= link_to tour.title, tour_path(tour) %> by <%= link_to tour.agency.name, agency_path(tour.agency)%>
-          
-        </li>
+          <% customer_tour = CustomerTour.find_join(@customer, tour) %>
+          <% if customer_tour.canceled == false %>
+            <%= link_to "Cancel Tour", customer_tour_path(customer_tour), class: 'right' %>
+          <% else %>
+            <p class='red right'>Canceled</p>
+          <%end%>
       <% end %>
     </ul>
 
