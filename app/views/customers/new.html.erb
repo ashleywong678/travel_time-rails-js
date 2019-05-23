@@ -8,34 +8,33 @@
   <%= render 'error' %>
   
   <br>
-  <%= form_for(@customer) do |f| %>
-  <%= hidden_field_tag 'tour_id', @tour.id if @tour %>
+    <%= form_for(@customer) do |f| %>
+      <% if @tour %>    <%# if @tour exists %>
+        <%= f.hidden_field :tour_id, value: @tour.id %>   <%# add a hidden field with @tour.id %>
+      <% end %>
+      
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %><br><br>
 
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name %><br><br>
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %><br><br>
 
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name %><br><br>
+      <%= f.label :email %>
+      <%= f.email_field :email %><br><br>
 
-  <%= f.label :email %>
-  <%= f.email_field :email %><br><br>
+      <%= f.label :phone_number %>
+      <%= f.telephone_field :phone_number %><br><br>
 
-  <%= f.label :phone_number %>
-  <%= f.telephone_field :phone_number %><br><br>
+      <%= f.label :city %>
+      <%= f.text_field :city %><br><br>
 
-  <%= f.label :city %>
-  <%= f.text_field :city %><br><br>
+      <%= f.label :country %>
+      <%= f.text_field :country %><br><br>
 
-  <%= f.label :country %>
-  <%= f.text_field :country %><br><br>
+      <%= f.label :language %>
+      <%= f.text_field :language %><br><br>
 
-  <%= f.label :language %>
-  <%= f.text_field :language %><br><br>
-
-  <%= label_tag :notes %><br>
-  <%= text_area_tag :notes, nil, rows: "4", class: 'large-width round-edge', placeholder: "If applicable, add any specific information the tour agency should know. Eg: Allergies, disabilities, restrictions, etc..." %><br>
-
-  <%= f.submit %>
-<% end %>
+      <%= f.submit %>
+    <% end %>
   
 </div>
