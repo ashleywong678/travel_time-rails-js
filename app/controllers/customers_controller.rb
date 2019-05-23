@@ -49,14 +49,32 @@ class CustomersController < ApplicationController
   end
 
   def update
-    binding.pry
     @customer = Customer.find_by(id: params[:id])
     @customer.update(customer_params)
     if @customer.errors.any?
       render :edit
+    elsif tours = params[:customer][:tour_ids]
+      tours.delete("")
+      tours.each do |tour|    #tour is a integer for Tour.id
+        customer_tour = CustomerTour.find_by(customer_id: @customer.id, tour_id: tour)    #look for a join
+        if !customer_tour     #if there's no join between customer and tour
+          found_tour = Tour.find_by(id: tour)
+          customer_tour = found_tour.customer_tours.build(customer_id: @customer.id)    #creat a join table between tour and @customer
+          customer_tour.save    #save b/c build doesn't persist
+          #else...do nothing because there's a join already
+        end
+      end 
       redirect_to @customer
     end
+    # Need to fix-
+    # customer_controller, update 
+    #   - find customer
+    #   -update customer by params
+    #   -add tours to customer.tours if they're new
+    #   -if tour is removed from customer, change customer_tours.canceled => false
   end
+
+
 
   def destroy
     @customer = Customer.find_by(id: params[:id])
