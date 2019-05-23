@@ -12,9 +12,7 @@
       <% @customer.tours.each do |tour| %>
         <li>
           <%= link_to tour.title, tour_path(tour) %> by <%= link_to tour.agency.name, agency_path(tour.agency)%>
-          <% if c = CustomerTour.find_by(customer_id: @customer, tour_id: tour).notes %>       
-            <br>Notes: <%= c %>
-          <%end%>
+          
         </li>
       <% end %>
     </ul>
