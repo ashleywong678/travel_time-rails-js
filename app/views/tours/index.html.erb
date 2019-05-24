@@ -10,7 +10,7 @@
         <% if !logged_in? %>
         <%= link_to tour.agency.name, agency_path(tour.agency) %> - 
         <%end%>
-       <%= link_to tour.title, tour_path(tour) %> has <%= tour.customers.count%> customers signed up</p>
+       <%= link_to tour.title, tour_path(tour) %> has <%= tour.customer_tours.active.count%> customer(s) going!</p>
     <% end %>
   </ul>
   <br>
