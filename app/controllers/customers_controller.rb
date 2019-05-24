@@ -12,8 +12,13 @@ class CustomersController < ApplicationController
   def new
     if params[:tour_id]   #if it's nested
       @tour = Tour.find_by(id: params[:tour_id])
-      @customer = @tour.customers.build   #need associated objects
-      @tours = Tour.all
+      if @tour.agency == current_user
+        @customer = @tour.customers.build   #need associated objects
+        @tours = Tour.all
+      else
+        flash[:message] = "Sorry, your agency does not have the privileges to edit this tour"
+        redirect_to @tour
+      end
     else    #if it's not nested
       @customer = Customer.new
       @tours = Tour.all
@@ -26,17 +31,18 @@ class CustomersController < ApplicationController
       flash[:message] = "Customer already exists"
       redirect_to customers_path        #send to customer index
     elsif !@customer    #if customer doesn't already exist
-      # binding.pry
       @customer = Customer.create(customer_params)   #create customer
-      if params[:customer][:tour_id]  #if the form is nested
-        @tour = Tour.find_by(id: params[:customer][:tour_id])
-        customer_tour = @tour.customer_tours.build(customer_id: @customer.id)    #creat a join table between @tour and @customer
-        customer_tour.save
+      if @customer.errors.any?    #if there's problems creating
+        render :new     #show errors
+      else    #if it's successful creating a customer
+        if params[:customer][:tour_id]  #if the form is nested
+          @tour = Tour.find_by(id: params[:customer][:tour_id])
+          customer_tour = @tour.customer_tours.build(customer_id: @customer.id)    #creat a join table between @tour and @customer
+          customer_tour.save
+          @customer.save
+        end
+        redirect_to @customer   #then go to customer show page
       end
-      @customer.save
-      redirect_to @customer   #then go to customer show page
-    else    #if everything fails...
-      render :new
     end
   end
 
