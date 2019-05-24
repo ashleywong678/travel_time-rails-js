@@ -9,7 +9,7 @@ class Tour < ApplicationRecord
   validates :length, :price, numericality: { only_integer: true }
   validates :price, length: { minimum: 1 }
   validates :price, numericality: { greater_than: 0 }
-
+  
   def todays_date #check if :date is after current date
     if date == nil
       errors[:date] << "cannot be blank"
@@ -18,8 +18,5 @@ class Tour < ApplicationRecord
     end
   end
 
-  def self.most_popular #returns list of ordered tours by most customer signup
-
-  end
 
 end
