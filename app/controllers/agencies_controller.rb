@@ -53,14 +53,7 @@ class AgenciesController < ApplicationController
   private
 
   def agency_params
-    params.require(:agency).permit(:name, :password, :address, :phone_number, :country, :language)
-  end
-
-  def require_login
-    unless logged_in?
-      flash[:message] = "Please login or signup."
-      redirect_to root_path
-    end
+    params.require(:agency).permit(:name, :password, :email, :address, :phone_number, :country, :language)
   end
 
   def set_agency
