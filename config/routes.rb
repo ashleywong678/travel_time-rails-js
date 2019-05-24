@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   end
 #---------- customers ---------
   resources :customers
+#------customer_tours--------
+  get '/customer_tours/:id', to: 'customer_tours#update', as: 'customer_tour'
 end
 
 # Prefix    Verb      URI Pattern                      Controller#Action
