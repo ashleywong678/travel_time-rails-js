@@ -25,8 +25,8 @@ class SessionsController < ApplicationController
       session[:user_id] = @agency.id
       redirect_to agencies_main_path(@agency)
     else
-      @agency = Agency.new(name: auth['info']['name'], email: auth['info']['email'], password: SecureRandom.hex)
-      if @agency.save
+      @agency = Agency.create(name: auth['info']['first_name'], email: auth['info']['email'], password: SecureRandom.hex)
+      if @agency
         session[:user_id] = @agency.id
         redirect_to agencies_main_path(@agency)
       end
