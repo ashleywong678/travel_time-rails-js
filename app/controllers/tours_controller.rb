@@ -1,4 +1,5 @@
 class ToursController < ApplicationController
+  before_action :require_login, except: [:index]
   
   def index
     if params[:agency_id] && current_user.id == params[:agency_id].to_i
@@ -9,7 +10,7 @@ class ToursController < ApplicationController
   end
 
   def new
-    if current_user && logged_in?
+    if logged_in?
       @agency = Agency.find_by(id: current_user.id)
       @tour = @agency.tours.build
     else
