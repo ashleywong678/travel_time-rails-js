@@ -4,7 +4,7 @@ class Agency < ApplicationRecord
   has_many :customers, through: :tours
   validates :name, :email, presence: true
   validates :name, :email, uniqueness: true
-  # validates :phone_number, length: { is: 10 }
+  validates :phone_number, length: { is: 10 }
 
   def self.from_omniauth(auth)
    # Creates a new user only if it doesn't exist
