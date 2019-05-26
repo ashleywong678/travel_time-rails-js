@@ -5,7 +5,7 @@ class Customer < ApplicationRecord
   
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true
-  validates :phone_number, length: { is: 10 }
+  validates :phone_number, length: { minimum: 10, maximum: 11 }
 
   def full_name
     "#{self.first_name} #{self.last_name}"
