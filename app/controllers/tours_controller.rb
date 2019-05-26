@@ -10,17 +10,13 @@ class ToursController < ApplicationController
   end
 
   def new
-    if logged_in?
-      @agency = Agency.find_by(id: current_user.id)
-      @tour = @agency.tours.build
-    else
-      redirect_to root_path
-    end
+    @agency = Agency.find_by(id: current_user.id)
+    @tour = @agency.tours.build
   end
 
   def create
     @agency = Agency.find_by(id: params[:agency_id])
-    if logged_in? && @agency == current_user
+    if @agency == current_user
       @tour = @agency.tours.build(tour_params)
       if @tour.save
         redirect_to @tour
@@ -39,7 +35,7 @@ class ToursController < ApplicationController
   def edit
     @tour = Tour.find_by(id: params[:id])
     @agency = @tour.agency
-    if logged_in? && @agency == current_user
+    if @agency == current_user
       render :edit
     else
       redirect_to root_path
@@ -48,20 +44,26 @@ class ToursController < ApplicationController
 
   def update
     @tour = Tour.find_by(id: params[:id])
-    @tour.update(tour_params)
-    if @tour.errors.any?
-      render :edit
+    if @tour.agency == current_user
+      @tour.update(tour_params)
+      if @tour.errors.any?
+        render :edit
+      else
+        redirect_to @tour
+      end
     else
+      flash[:message] = "Sorry, cannot update a tour that doesn't belong to your agency."
       redirect_to @tour
     end
   end
 
   def destroy
     @tour = Tour.find_by(id: params[:id])
-    if @tour && logged_in? && current_user == @tour.agency
+    if @tour && current_user == @tour.agency
       @tour.destroy
       redirect_to tours_path
     else
+      flash[:message] = "Sorry, cannot delete a tour that doesn't belong to your agency.'"
       redirect_to tours_path
     end
   end
