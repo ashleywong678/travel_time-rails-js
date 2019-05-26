@@ -2,7 +2,7 @@ class CustomersController < ApplicationController
   before_action :require_login
 
   def index
-    if params[:tour_id] && logged_in?
+    if params[:tour_id]
       @customers = Tour.find_by(id: params[:tour_id]).customers
     else
       @customers = Customer.all
@@ -78,13 +78,6 @@ class CustomersController < ApplicationController
 
   def customer_params
     params.require(:customer).permit(:first_name, :last_name, :email, :phone_number, :city, :country, :language, :customer_tours, tour_ids:[])
-  end
-
-  def require_login
-    unless logged_in?
-      flash[:message] = "Please login or signup."
-      redirect_to root_path
-    end
   end
 
 end
