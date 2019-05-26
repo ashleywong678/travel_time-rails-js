@@ -9,8 +9,8 @@
       <p><strong>Main Language:</strong> <%= @agency.language %></p>
     </ul>
     <% if logged_in? %>
-      <%= link_to "Delete Account", agency_path(@agency), method: :delete, class: 'btn' %>
       <%= link_to "Edit Profile", edit_agency_path(@agency), class: 'btn' %>
+      <%= link_to "Delete Account", agency_path(@agency), method: :delete, class: 'btn' %>
     <% end %>
     <br>
 </div>
