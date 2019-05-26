@@ -13,7 +13,7 @@ class Tour < ApplicationRecord
   def todays_date #check if :date is after current date
     if date == nil
       errors[:date] << "cannot be blank"
-    elsif date.past? || date.today?
+    elsif date.past? || date == Date.today
       errors[:date] << "must be after today"
     end
   end
