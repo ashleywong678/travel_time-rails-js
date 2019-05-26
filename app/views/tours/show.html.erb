@@ -11,10 +11,12 @@
 
   <% if logged_in? %>
     <%= link_to "My Tours", agency_tours_path(@tour.agency), class: 'btn' %>
-    <%= link_to "Edit Tour", edit_tour_path(@tour), class: 'btn' %>
-    <%= link_to "Delete Tour", tour_path(@tour), method: :delete, class: 'btn' %>
-    <%= link_to "This Tour's Customers", tour_customers_path(@tour), class: 'btn' %>
-    <%= link_to "Create a Customer for this Tour", new_tour_customer_path(@tour), class: 'btn'%>
+    <% if @tour.agency == current_user %>
+      <%= link_to "Edit Tour", edit_tour_path(@tour), class: 'btn' %>
+      <%= link_to "Delete Tour", tour_path(@tour), method: :delete, class: 'btn' %>
+      <%= link_to "This Tour's Customers", tour_customers_path(@tour), class: 'btn' %>
+      <%= link_to "Create a Customer for this Tour", new_tour_customer_path(@tour), class: 'btn'%>
+    <%end%>
   <%end%>
 
 </div>
