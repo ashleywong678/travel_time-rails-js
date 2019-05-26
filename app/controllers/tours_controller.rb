@@ -1,5 +1,5 @@
 class ToursController < ApplicationController
-  before_action :require_login, except: [:index]
+  before_action :require_login, except: [:index, :show]
   
   def index
     if params[:agency_id] && current_user.id == params[:agency_id].to_i
