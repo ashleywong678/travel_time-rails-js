@@ -1,5 +1,5 @@
 class AgenciesController < ApplicationController
-  before_action :require_login, except: [:new, :create]
+  before_action :require_login, except: [:new, :create, :show]
 
   def new #signup
     @agency = Agency.new
