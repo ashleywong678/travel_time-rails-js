@@ -15,17 +15,12 @@ class ToursController < ApplicationController
     @tour = @agency.tours.build
   end
 
-  def create #dont' need @agency, build off current_user.tours
-    @agency = Agency.find_by(id: params[:agency_id])
-    if @agency == current_user
-      @tour = @agency.tours.build(tour_params)
-      if @tour.save
-        redirect_to @tour
-      else
-        render :new
-      end
-    else
-      redirect_to root_path
+  def create
+    @tour = current_user.tours.build(tour_params)
+    if @tour.save
+      redirect_to @tour
+    elsif @tour.errors.any?
+      render :new
     end
   end
 
