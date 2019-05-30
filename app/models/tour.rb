@@ -9,6 +9,7 @@ class Tour < ApplicationRecord
   validates :length, :price, numericality: { only_integer: true }
   validates :price, length: { minimum: 1 }
   validates :price, numericality: { greater_than: 0 }
+  scope :best, -> {joins(:customer_tours).group("tours.id").order('count_id desc').count('id')}
   
   def todays_date #check if :date is after current date
     if date == nil

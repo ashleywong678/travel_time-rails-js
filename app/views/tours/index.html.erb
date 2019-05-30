@@ -17,4 +17,6 @@
   <% if params[:agency_id] %>
     <%= link_to "Create a Tour", new_tour_path, class: 'btn' %>
   <% end %>
+
+  <%= link_to "Browse all tours by most popular", best_tours_path, class: 'btn'%>
 </div>

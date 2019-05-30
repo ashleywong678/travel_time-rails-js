@@ -23,4 +23,8 @@ Rails.application.routes.draw do
   resources :customers
 #------customer_tours--------
   get '/customer_tours/:id', to: 'customer_tours#update', as: 'customer_tour'
+  
+  #most customers tour route
+  get '/best_tours', to: 'tours#best', as: 'best_tours'
+  # best_tours GET    /best_tours(.:format)   tour#best
 end

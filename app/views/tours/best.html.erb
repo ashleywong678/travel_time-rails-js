@@ -1,0 +1,10 @@
+<div class='grey-box center'>
+  <h1>Tours by most popular:</h1>
+    <br>
+  <ul>
+  <% @tours.each do |tour| %>
+    <li><%= link_to tour.title, tour_path(tour)%> has <%= tour.customers.count %> signup(s)!</li>
+  <%end%>
+  </ul>
+
+</div>

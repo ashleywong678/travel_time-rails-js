@@ -1,5 +1,6 @@
 class ToursController < ApplicationController
   before_action :require_login, except: [:index, :show]
+  before_action :set_tour, except: [:index, :new, :create, :best]
   
   def index
     if params[:agency_id] && current_user.id == params[:agency_id].to_i
@@ -14,7 +15,7 @@ class ToursController < ApplicationController
     @tour = @agency.tours.build
   end
 
-  def create
+  def create #dont' need @agency, build off current_user.tours
     @agency = Agency.find_by(id: params[:agency_id])
     if @agency == current_user
       @tour = @agency.tours.build(tour_params)
@@ -29,11 +30,16 @@ class ToursController < ApplicationController
   end
 
   def show
-    set_tour
+  end
+
+  def best
+    tours_ids = Tour.best
+    @tours = []
+    tours_ids.each {|t| @tours << Tour.find_by(id: t[0])}
+    @tours
   end
 
   def edit
-    set_tour
     @agency = @tour.agency
     if @agency == current_user
       render :edit
@@ -44,7 +50,6 @@ class ToursController < ApplicationController
   end
 
   def update
-    set_tour
     if @tour.agency == current_user
       @tour.update(tour_params)
       if @tour.errors.any?
@@ -59,7 +64,6 @@ class ToursController < ApplicationController
   end
 
   def destroy
-    set_tour
     if @tour && current_user == @tour.agency
       @tour.destroy
       redirect_to tours_path
