@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
         redirect_to agencies_main_path(@agency)
       else
         flash[:message] = "Invalid login. Please try again."
+        @agencies = Agency.all
         render :new
       end
   end
