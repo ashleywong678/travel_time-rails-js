@@ -2,7 +2,7 @@ class CustomersController < ApplicationController
   before_action :require_login
 
   def index
-    if params[:tour_id]
+    if params[:tour_id]   #if it's nested
       @customers = Tour.find_by(id: params[:tour_id]).customers
     else
       @customers = Customer.all
@@ -47,16 +47,16 @@ class CustomersController < ApplicationController
   end
 
   def show
-    @customer = Customer.find_by(id: params[:id])
+    set_customer
   end
 
   def edit
-    @customer = Customer.find_by(id: params[:id])
+    set_customer
     @tours  = Tour.all
   end
 
   def update
-    @customer = Customer.find_by(id: params[:id])
+    set_customer
     @customer.update(customer_params)
     if @customer.errors.any?
       render :edit
@@ -65,7 +65,7 @@ class CustomersController < ApplicationController
   end
 
   def destroy
-    @customer = Customer.find_by(id: params[:id])
+    set_customer
     if @customer && logged_in?
       @customer.destroy
       redirect_to customers_path
@@ -78,6 +78,10 @@ class CustomersController < ApplicationController
 
   def customer_params
     params.require(:customer).permit(:first_name, :last_name, :email, :phone_number, :city, :country, :language, :customer_tours, tour_ids:[])
+  end
+
+  def set_customer
+    @customer = Customer.find_by(id: params[:id])
   end
 
 end

@@ -29,21 +29,22 @@ class ToursController < ApplicationController
   end
 
   def show
-    @tour = Tour.find_by(id: params[:id])
+    set_tour
   end
 
   def edit
-    @tour = Tour.find_by(id: params[:id])
+    set_tour
     @agency = @tour.agency
     if @agency == current_user
       render :edit
     else
-      redirect_to root_path
+      flash[:message] = "Sorry, your agency does not have edit privileges."
+      redirect_to @tour
     end
   end
 
   def update
-    @tour = Tour.find_by(id: params[:id])
+    set_tour
     if @tour.agency == current_user
       @tour.update(tour_params)
       if @tour.errors.any?
@@ -52,13 +53,13 @@ class ToursController < ApplicationController
         redirect_to @tour
       end
     else
-      flash[:message] = "Sorry, cannot update a tour that doesn't belong to your agency."
+      flash[:message] = "Sorry, your agency does not have edit privileges."
       redirect_to @tour
     end
   end
 
   def destroy
-    @tour = Tour.find_by(id: params[:id])
+    set_tour
     if @tour && current_user == @tour.agency
       @tour.destroy
       redirect_to tours_path
@@ -72,6 +73,10 @@ class ToursController < ApplicationController
 
   def tour_params
     params.require(:tour).permit(:title, :country, :date, :length, :price, :description, :agency_id)
+  end
+
+  def set_tour
+    @tour = Tour.find_by(id: params[:id])
   end
 
 end
