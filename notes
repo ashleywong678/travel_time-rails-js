@@ -1,37 +1,25 @@
-agency => tours <=> customer 
+* What is your plan to render an index page via JavaScript & JSON?
+    * All customers from main page 
 
-agency (user)
-id | name | address | country | language | phone_number | password_digest
-has_many tours
-has_many customers through tours
+* What is your plan to render a show page via JavaScript & JSON?
+    * My tours button from main page 
 
-tour
-id | title | country | date | price | description
-belongs_to agency
-has_many customer_tours
-has_many customers through customer_tour
+* How will you implement rendering a has_many relationship via JavaScript & JSON?
+    * My tours button from main page also 
 
-customer_tours
-id | customer_id | tour_id | (add another attribute custom to a customer)
-belongs_to tour
-belongs_to customer
+* What form will you use to submit via AJAX?
+    * When click on create tour on new form, use Ajax dynamic rendering 
 
-customer
-id | first_name | last_name | email | phone_number | city | country | language
-has_many customer_tour
-has_many tours through customer_tour
-has_many agency through tours
+* What is meant by JavaScript Model Objects and how will you implement them in your application
+    * Javascript objects- only used for modeling ruby objects for front end use (copies to use in front end, not actual objects)
+    * Classes and functions all go in js file 
 
+* There will be a quiz in your assessment. Be familiar with hoisting and scope as well as benefits of using jQuery and how that differs from vanilla JavaScript
 
-scope method- Tour.most_popular => gives order of tours by most popular or by how many customers have signed up
+* Minimum requirement- render tour index, tour show, and Ajax tour new form on agency main page
 
-X omniauth- google (when putting in /localhost3000 into site, will get warning, ignore warning)
+* Use breakpoints when debugging
 
-X nested routes
-  /tour/1/customers   => see all customers from the tour page
-  /tour/:id/customer/new   => create a customer that is automatically associated with the tour from tour page
+* When doing Ajax request, remember involvement of controller and can still use pry
 
-
-
-  x fix google omniauth
-  x finish tours scope method
+* When doing has_many, want to see the has many relationship
