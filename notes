@@ -1,11 +1,11 @@
 * What is your plan to render an index page via JavaScript & JSON?
-    * All customers from main page 
+    * All customers from main page
 
 * What is your plan to render a show page via JavaScript & JSON?
-    * My tours button from main page 
+    * My tours button from main page
 
 * How will you implement rendering a has_many relationship via JavaScript & JSON?
-    * My tours button from main page also 
+    * My tours button from main page also
 
 * What form will you use to submit via AJAX?
     * When click on create tour on new form, use Ajax dynamic rendering 
