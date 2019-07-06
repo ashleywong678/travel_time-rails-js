@@ -8,6 +8,10 @@ class ToursController < ApplicationController
     else
       @tours = Tour.all
     end
+    respond_to do |f|
+      f.html
+      f.json{render json: @tours}
+    end
   end
 
   def new
