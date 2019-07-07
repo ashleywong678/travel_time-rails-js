@@ -3,8 +3,7 @@ $(() => {
 })
 
 const myTours = () => {
-  $('.my_profile').on('click', (event) => {
+  $('.my_tours').on('click', (event) => {
     event.preventDefault()
-    alert("hello")
   })
 }
