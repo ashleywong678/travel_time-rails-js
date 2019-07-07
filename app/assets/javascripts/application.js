@@ -12,7 +12,10 @@
 //
 //= require rails-ujs
 //= require jquery
+//= require jquery_ujs
 //= require bootstrap
 //= require activestorage
 //= require tours
+//= require customers
+//= require agencies
 //= require_tree .
