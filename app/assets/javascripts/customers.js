@@ -5,13 +5,16 @@ $(() => {
 const allCustomers = () => {
   $('.all_customers').on('click', (e) => {
     e.preventDefault()
+    history.pushState(null, null, "customers")
     fetch('/customers.json')
       .then(res => res.json())
       .then(customers => {
-        $('#info').html('')
-        customers.forEach( customer => {
+        $('.main').html('')
+        console.log(customers)
+        customers.forEach(customer => {
           let newCustomer = new Customer(customer)
-          console.log(newCustomer)
+          let customerHtml = newCustomer.formatIndex()
+          $('.main').append(customerHtml)
         })
       })
   })
@@ -26,4 +29,13 @@ function Customer(customer){
   this.city = customer.city
   this.country = customer.country
   this.language = customer.language
+}
+
+Customer.prototype.formatIndex = function(){
+  let customerHtml = `
+  <li>${this.last_name}, ${this.first_name}
+  <a href='http://localhost:3000/customers/${this.id}'>See this customer</a>
+  </li>
+  `
+  return customerHtml
 }
