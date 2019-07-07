@@ -7,6 +7,10 @@ class CustomersController < ApplicationController
     else
       @customers = Customer.all
     end
+    respond_to do |f|
+      f.html
+      f.json{render json: @customers}
+    end
   end
 
   def new
