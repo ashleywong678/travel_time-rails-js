@@ -5,7 +5,8 @@ $(() => {
 const allCustomers = () => {
   $('.all_customers').on('click', (e) => {
     e.preventDefault()
-    history.pushState(null, null, "customers")
+    let stateObj = {route: "customers"}
+    history.pushState("", "", "customers")
     fetch('/customers.json')
       .then(res => res.json())
       .then(customers => {
@@ -14,7 +15,7 @@ const allCustomers = () => {
         customers.forEach(customer => {
           let newCustomer = new Customer(customer)
           let customerHtml = newCustomer.formatIndex()
-          $('.main').append(customerHtml)
+          $('.main').append(`http://localhost:3000/${customerHtml}`)
         })
       })
   })
