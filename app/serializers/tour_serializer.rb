@@ -3,5 +3,5 @@ class TourSerializer < ActiveModel::Serializer
 
   belongs_to :agency
   has_many :customer_tours
-  # has_many :customers, through :customer_tours
+  
 end
