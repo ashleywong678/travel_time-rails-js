@@ -3,6 +3,7 @@ $(() => {
 })
 
 const allCustomers = () => {
+  //show all customers from agency main page
   $('.all_customers').on('click', (e) => {
     e.preventDefault()
     const data = 'http://localhost:3000/'
@@ -18,7 +19,20 @@ const allCustomers = () => {
           let customerHtml = newCustomer.formatIndex()
           $("#info").append(customerHtml)
         })
-        $('.main').append('<br><br><a href="/customers/new" class="btn left">Create a Customer</a><br><br>')
+        $('.main').append('<br><br><a href="/customers/new" class="btn left ">Create a Customer</a><br><br>')
+      })
+  })
+  //to show an individual customer page from rendered js index
+  $(document).on('click', ".show_customer", function(e){
+    e.preventDefault()
+    $('.main').html('')
+      let id = $(this).attr('data-id')
+    fetch(`/customers/${id}.json()`)
+      .then(res => res.json())
+      .then(post => {
+        let newCustomer = new Customer(customer)
+          let customerHtml = newCustomer.formatShow()
+          $(".main").append(customerHtml)
       })
   })
 }
@@ -37,8 +51,16 @@ function Customer(customer){
 Customer.prototype.formatIndex = function(){
   let customerHtml = `
   <li>
-  <a href='http://localhost:3000/customers/${this.id}'>${this.first_name} ${this.last_name}</a>
+  <a href='http://localhost:3000/customers/${this.id}' class='show_customer' 
+  data-id="${this.id}">${this.first_name} ${this.last_name}</a>
   </li>
+  `
+  return customerHtml
+}
+
+Customer.prototype.formatShow = function(){
+  let customerHtml = `
+  <h1 class="center">${this.first_name} ${this.last_name}</h1>
   `
   return customerHtml
 }
