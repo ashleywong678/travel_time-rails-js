@@ -21,11 +21,11 @@ const myTours = () => {
 
 function Tour(tour){
   this.id = tour.id
-  this.id = tour.title
+  this.title = tour.title
+  this.country = tour.country
   this.date = tour.date
   this.length = tour.length
   this.price =  tour.price
-  this.country = tour.country
   this.description = tour.description
 }
 
