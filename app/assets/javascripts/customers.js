@@ -5,18 +5,20 @@ $(() => {
 const allCustomers = () => {
   $('.all_customers').on('click', (e) => {
     e.preventDefault()
-    let stateObj = {route: "customers"}
-    history.pushState("", "", "customers")
+    const data = 'http://localhost:3000/'
+    url = data + "customers"
+    history.pushState(null, null, url)
     fetch('/customers.json')
       .then(res => res.json())
       .then(customers => {
         $('.main').html('')
-        console.log(customers)
+        $('.main').append('<h1 class="center">Customer Accounts</h1><br><ul class="left" id="info"></ul>')
         customers.forEach(customer => {
           let newCustomer = new Customer(customer)
           let customerHtml = newCustomer.formatIndex()
-          $('.main').append(`http://localhost:3000/${customerHtml}`)
+          $("#info").append(customerHtml)
         })
+        $('.main').append('<br><br><a href="/customers/new" class="btn left">Create a Customer</a><br><br>')
       })
   })
 }
@@ -34,8 +36,8 @@ function Customer(customer){
 
 Customer.prototype.formatIndex = function(){
   let customerHtml = `
-  <li>${this.last_name}, ${this.first_name}
-  <a href='http://localhost:3000/customers/${this.id}'>See this customer</a>
+  <li>
+  <a href='http://localhost:3000/customers/${this.id}'>${this.first_name} ${this.last_name}</a>
   </li>
   `
   return customerHtml
