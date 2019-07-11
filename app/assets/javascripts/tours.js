@@ -5,7 +5,7 @@ $(() => {
 const myTours = () => {
   $('.my_tours').on('click', (e) => {
     e.preventDefault()
-    history.pushState("", "", "tours")
+    history.pushState(null, null, "tours")
     fetch('/tours.json')
       .then(res => res.json())
       .then(tours => {
@@ -31,7 +31,7 @@ function Tour(tour){
 
 Tour.prototype.formatIndex = function(){
   let tourHtml = `
-  <li><a href='/tour/${this.id}'>${this.title}</a>
+  <li><a href='/tours/${this.id}'>${this.title}</a>
   </li>
   `
   return tourHtml
