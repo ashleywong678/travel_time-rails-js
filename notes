@@ -1,14 +1,14 @@
 * What is your plan to render an index page via JavaScript & JSON?
-    * All customers from main page
+    X All customers from main page
 
 * What is your plan to render a show page via JavaScript & JSON?
-    * My tours button from main page
+    X customer from js customers index button from main page
 
 * How will you implement rendering a has_many relationship via JavaScript & JSON?
     * My tours button from main page also
 
 * What form will you use to submit via AJAX?
-    * When click on create tour on new form, use Ajax dynamic rendering 
+    X When click on create customer on new form, use Ajax dynamic rendering 
 
 * What is meant by JavaScript Model Objects and how will you implement them in your application
     * Javascript objects- only used for modeling ruby objects for front end use (copies to use in front end, not actual objects)
