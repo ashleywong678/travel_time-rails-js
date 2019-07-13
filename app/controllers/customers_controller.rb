@@ -39,13 +39,13 @@ class CustomersController < ApplicationController
       if @customer.errors.any?    #if there's problems creating
         render :new     #show errors
       else    #if it's successful creating a customer
-        if params[:customer][:tour_id]  #if the form is nested
+        if params[:customer][:tour_id]  #for nested form
           @tour = Tour.find_by(id: params[:customer][:tour_id])
           customer_tour = @tour.customer_tours.build(customer_id: @customer.id)    #creat a join table between @tour and @customer
           customer_tour.save
           @customer.save
         end
-        redirect_to @customer   #then go to customer show page
+        render json: @customer   #then go to customer show page
       end
     end
   end
