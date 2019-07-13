@@ -9,31 +9,20 @@ const allCustomers = () => {
     const data = 'http://localhost:3000/'
     url = data + "customers"
     history.pushState(null, null, url)
-    fetch('/customers.json')
-      .then(res => res.json())
-      .then(customers => {
-        $('.main').html('')
-        $('.main').append('<h1 class="center">Customer Accounts</h1><br><ul class="left" id="info"></ul>')
-        customers.forEach(customer => {
-          let newCustomer = new Customer(customer)
-          let customerHtml = newCustomer.formatIndex()
-          $("#info").append(customerHtml)
-        })
-        $('.main').append('<br><br><a href="/customers/new" class="btn left ">Create a Customer</a><br><br>')
-      })
+    getCustomers()
   })
   //to show an individual customer page from rendered js index
   $(document).on('click', ".show_customer", function(e){
     e.preventDefault()
-    $('.main').html('')
-      let id = $(this).attr('data-id')
-    fetch(`/customers/${id}.json()`)
-      .then(res => res.json())
-      .then(post => {
-        let newCustomer = new Customer(customer)
-          let customerHtml = newCustomer.formatShow()
-          $(".main").append(customerHtml)
-      })
+    let id = $(this).attr('data-id')
+    fetch(`/customers/${id}.json`)
+    .then(res => res.json())
+    .then(customer => {
+      $('.main').html('')
+      let newCustomer = new Customer(customer)
+        let customerHtml = newCustomer.formatShow()
+        $(".main").append(customerHtml)
+    })
   })
 }
 
@@ -63,4 +52,19 @@ Customer.prototype.formatShow = function(){
   <h1 class="center">${this.first_name} ${this.last_name}</h1>
   `
   return customerHtml
+}
+
+const getCustomers = () => {
+  fetch('/customers.json')
+      .then(res => res.json())
+      .then(customers => {
+        $('.main').html('')
+        $('.main').append('<h1 class="center">Customer Accounts</h1><br><ul class="left" id="info"></ul>')
+        customers.forEach(customer => {
+          let newCustomer = new Customer(customer)
+          let customerHtml = newCustomer.formatIndex()
+          $("#info").append(customerHtml)
+        })
+        $('.main').append('<br><br><a href="/customers/new" class="btn left">Create a Customer</a><br><br>')
+      })
 }
