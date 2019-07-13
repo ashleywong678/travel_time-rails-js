@@ -52,6 +52,7 @@ class CustomersController < ApplicationController
 
   def show
     set_customer
+    render json: @customer
   end
 
   def edit
