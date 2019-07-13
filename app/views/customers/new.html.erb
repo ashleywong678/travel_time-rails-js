@@ -1,40 +1,41 @@
-<div class='grey-box center'>
-  <h1>Create a new Customer 
-    <% if params[:tour_id] %>
-      for <br><%= @tour.title %> on <%= @tour.date%>
-    <% end %>
-  </h1>
-
-  <%= render 'error' %>
-  
-  <br>
-    <%= form_for(@customer) do |f| %>
-      <% if @tour %>    <%# if @tour exists %>
-        <%= f.hidden_field :tour_id, value: @tour.id %>   <%# add a hidden field with @tour.id %>
+<div class='grey-box main'>
+  <section class='center'>
+    <h1>Create a new Customer 
+      <% if params[:tour_id] %>
+        for <br><%= @tour.title %> on <%= @tour.date%>
       <% end %>
-      
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name %><br><br>
+    </h1>
 
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name %><br><br>
+    <%= render 'error' %>
+    
+    <br>
+      <%= form_for(@customer) do |f| %>
+        <% if @tour %>    <%# if @tour exists %>
+          <%= f.hidden_field :tour_id, value: @tour.id %>   <%# add a hidden field with @tour.id %>
+        <% end %>
+        
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name %><br><br>
 
-      <%= f.label :email %>
-      <%= f.email_field :email %><br><br>
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name %><br><br>
 
-      <%= f.label :phone_number %>
-      <%= f.telephone_field :phone_number %><br><br>
+        <%= f.label :email %>
+        <%= f.email_field :email %><br><br>
 
-      <%= f.label :city %>
-      <%= f.text_field :city %><br><br>
+        <%= f.label :phone_number %>
+        <%= f.telephone_field :phone_number %><br><br>
 
-      <%= f.label :country %>
-      <%= f.text_field :country %><br><br>
+        <%= f.label :city %>
+        <%= f.text_field :city %><br><br>
 
-      <%= f.label :language %>
-      <%= f.text_field :language %><br><br>
+        <%= f.label :country %>
+        <%= f.text_field :country %><br><br>
 
-      <%= f.submit %>
-    <% end %>
-  
+        <%= f.label :language %>
+        <%= f.text_field :language %><br><br>
+
+        <%= f.submit %>
+      <% end %>
+  </section>
 </div>
