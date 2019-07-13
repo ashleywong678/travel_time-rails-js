@@ -1,13 +1,15 @@
 <%# Agency home page %>
-<div class='grey-box center main'>
-  <h1>Welcome <%= @agency.name %></h1>
+<div class='grey-box main'>
+  <section class="center">
+    <h1>Welcome <%= @agency.name %></h1>
+      <br>
+    <p>What would you like to do?</p>
+      <%# <br> %>
+      
+      <%= link_to "My Profile", agency_path(@agency), class:'btn my_profile'%>
+      <%= link_to "My Tours", agency_tours_path(@agency), class:'btn my_tours'%>
+      <%= link_to "New Tour", new_tour_path, class: 'btn'%>
+      <%= link_to "All Customers", customers_path, class:'btn all_customers'%>
     <br>
-  <p>What would you like to do?</p>
-    <%# <br> %>
-    
-    <%= link_to "My Profile", agency_path(@agency), class:'btn my_profile'%>
-    <%= link_to "My Tours", agency_tours_path(@agency), class:'btn my_tours'%>
-    <%= link_to "New Tour", new_tour_path, class: 'btn'%>
-    <%= link_to "All Customers", customers_path, class:'btn all_customers'%>
-  <br>
+  </section>
 </div>
