@@ -52,7 +52,10 @@ class CustomersController < ApplicationController
 
   def show
     set_customer
-    render json: @customer
+    respond_to do |f|
+      f.html
+      f.json{render json: @customer}
+    end
   end
 
   def edit
