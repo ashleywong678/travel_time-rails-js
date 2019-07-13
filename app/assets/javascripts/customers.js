@@ -22,12 +22,23 @@ const customersListeners = () => {
     .then(customer => {
       $('.main').html('')
       let newCustomer = new Customer(customer)
-        let customerHtml = newCustomer.formatShow()
-        $(".main").append(customerHtml)
+      let customerHtml = newCustomer.formatShow()
+      $(".main").append(customerHtml)
     })
   })
   //new customer form submission
-  $()
+  $("#new_customer").on('submit', function(e){
+    e.preventDefault()
+    const values = $(this).serialize()
+    $.post("/customers", values)
+      .done(function(data){
+        $('.main').html('')
+        // $(".main").html('new customer')
+        const newCustomer = new Customer(data)
+        const customerHtml = newCustomer.formatShow()
+        $(".main").append(customerHtml)
+      })
+  })
 }
 
 function Customer(customer){
@@ -59,7 +70,6 @@ Customer.prototype.formatShow = function(){
     <p><strong>City: ${this.city}</strong></p>
     <p><strong>Country: ${this.country}</strong></p>
     <p><strong>Prefered Language: ${this.language}</strong></p>
-    <p><strong>Signed up tours: </strong></p><ul></ul>
     <br>
     <a href='${this.id}/edit' class='btn'>Edit this Customer</a>
     <a class="btn" rel="nofollow" data-method="delete" href="/customers/${this.id}">Delete Customer</a>
