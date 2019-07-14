@@ -34,6 +34,7 @@ const customersListeners = () => {
       .done(function(data){
         $('.main').html('')
         const newCustomer = new Customer(data)
+        history.pushState(null, null, `${newCustomer.id}`)
         const customerHtml = newCustomer.formatShow()
         $(".main").append(customerHtml)
       })
