@@ -5,7 +5,7 @@
     X customer from js customers index button from main page
 
 * How will you implement rendering a has_many relationship via JavaScript & JSON?
-    * My tours button from main page also
+    X My tours button from main page also
 
 * What form will you use to submit via AJAX?
     X When click on create customer on new form, use Ajax dynamic rendering 
