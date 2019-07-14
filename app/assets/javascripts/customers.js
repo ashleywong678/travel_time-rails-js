@@ -33,7 +33,6 @@ const customersListeners = () => {
     $.post("/customers", values)
       .done(function(data){
         $('.main').html('')
-        // $(".main").html('new customer')
         const newCustomer = new Customer(data)
         const customerHtml = newCustomer.formatShow()
         $(".main").append(customerHtml)
