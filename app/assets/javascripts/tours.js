@@ -5,15 +5,21 @@ $(() => {
 const myTours = () => {
   $('.my_tours').on('click', (e) => {
     e.preventDefault()
+    let url = window.location.pathname.split('/')
+    const agency_id = url[2]
     history.pushState(null, null, "tours")
-    fetch('/tours.json')
+    fetch(`/tours.json`)
       .then(res => res.json())
       .then(tours => {
         $('.main').html('')
+        $('.main').append(`<h1 class="center">My Tours</h1><br><ul class="tour_list"></ul>`)
         tours.forEach(tour => {
           let newTour = new Tour(tour)
-          let tourHtml = newTour.formatIndex()
-          $('.main').append(tourHtml)
+          if(newTour.agency.id == agency_id){
+            let tourHtml = newTour.formatIndex()
+            $('.tour_list').append(tourHtml)
+            $('.main').append('<a class="btn" href="/tours/new">Create a Tour</a>')
+          }
         })
       })
   })
@@ -27,6 +33,7 @@ function Tour(tour){
   this.length = tour.length
   this.price =  tour.price
   this.description = tour.description
+  this.agency = new Agency(tour.agency)
 }
 
 Tour.prototype.formatIndex = function(){
