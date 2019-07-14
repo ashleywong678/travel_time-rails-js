@@ -22,15 +22,24 @@ class SessionsController < ApplicationController
   end
 
   def google_auth
-    if @agency = Agency.find_by(email: auth['info']['email'])
-      session[:user_id] = @agency.id
-      redirect_to agencies_main_path(@agency)
-    else
-      @agency = Agency.create(name: auth['info']['first_name'], email: auth['info']['email'], password: SecureRandom.hex)
-      if @agency
-        session[:user_id] = @agency.id
+    # if @agency = Agency.find_by(email: auth['info']['email'])
+    #   session[:user_id] = @agency.id
+    #   redirect_to agencies_main_path(@agency)
+    # else
+    #   @agency = Agency.create(name: auth['info']['first_name'], email: auth['info']['email'], password: SecureRandom.hex)
+    #   if @agency
+    #     session[:user_id] = @agency.id
+    #     redirect_to agencies_main_path(@agency)
+    #   end
+    # end
+    @agency = Agency.create_from_google(auth)
+    set_session
+    if logged_in?
+        flash[:message] = "Successfully authenticated via Google!"
         redirect_to agencies_main_path(@agency)
-      end
+    else
+        flash[:message] = "Something went wrong. Try again"
+        redirect_to root_path
     end
   end
   

@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   get "/signup", to: "agencies#new"
 # ------------- google omniauth ------------
-  get 'auth/:provider/callback', to: 'sessions#google_auth'
+  # get 'auth/:provider/callback', to: 'sessions#google_auth'
+  get '/auth/google_oauth2/callback', to: 'sessions#create_from_omniauth'
 # ----------- agency ----------------
   get '/agencies/:id/main', to: 'agencies#main', as: 'agencies_main'
   resources :agencies, except: [:new] do

@@ -5,10 +5,10 @@ class Agency < ApplicationRecord
   validates :name, :email, presence: true
   validates :name, :email, uniqueness: true
 
-  def self.from_omniauth(auth)
-   # Creates a new user only if it doesn't exist
-    where(email: auth.info.email).first_or_initialize do |agency|
-      agency.name = auth.info.name
+  def self.create_from_google(auth)
+    Agency.find_or_create_by(email: auth[:info][:email]) do |agency|
+        agency.name = auth[:info][:name]
+        agency.password = SecureRandom.hex
     end
   end
 
