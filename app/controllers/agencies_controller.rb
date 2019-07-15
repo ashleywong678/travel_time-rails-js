@@ -21,7 +21,10 @@ class AgenciesController < ApplicationController
 
   def show #agency's profile page
     set_agency
-    render json: @agency
+    respond_to do |f|
+      f.html
+      f.json{render json: @agency}
+    end
   end
 
   def edit
