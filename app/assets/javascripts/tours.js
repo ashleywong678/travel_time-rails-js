@@ -13,12 +13,12 @@ const myTours = () => {
       .then(tours => {
         $('.main').html('')
         $('.main').append(`<h1 class="center">My Tours</h1><br><ul class="tour_list"></ul>`)
+        $('.main').append('<a class="btn" href="/tours/new">Create a Tour</a>')
         tours.forEach(tour => {
+          if(tour.agency.id === Number(agency_id)){
           let newTour = new Tour(tour)
-          if(newTour.agency.id == agency_id){
             let tourHtml = newTour.formatIndex()
             $('.tour_list').append(tourHtml)
-            $('.main').append('<a class="btn" href="/tours/new">Create a Tour</a>')
           }
         })
       })
