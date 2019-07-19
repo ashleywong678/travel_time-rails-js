@@ -23,8 +23,18 @@ const customersListeners = () => {
       $('.main').html('')
       let newCustomer = new Customer(customer)
       let customerHtml = newCustomer.formatShow()
+      const tourHtml = newCustomer.formatTours()
       $(".main").append(customerHtml)
+      $(".main").append("<ul id='tours'></ul>")
+      $("#tours").append(tourHtml)
     })
+  })
+  //sorted customers
+  $("#sorted_customers").on('click', (e)=> {
+    const data = 'http://localhost:3000/'
+    let url = data + "customers_sorted"
+    history.pushState(null, null, url)
+    sortedCustomers()
   })
   //new customer form submission
   $("#new_customer").on('submit', function(e){
@@ -50,13 +60,14 @@ function Customer(customer){
   this.city = customer.city
   this.country = customer.country
   this.language = customer.language
+  this.tours = customer.customer_tours
 }
 
 Customer.prototype.formatIndex = function(){
   let customerHtml = `
   <li>
   <a href='http://localhost:3000/customers/${this.id}' class='show_customer' 
-  data-id="${this.id}">${this.first_name} ${this.last_name}</a>
+  data-id="${this.id}">${this.last_name}, ${this.first_name}</a>
   </li>
   `
   return customerHtml
@@ -77,6 +88,14 @@ Customer.prototype.formatShow = function(){
   return customerHtml
 }
 
+Customer.prototype.formatTours = function(){
+  let toursHtml = ``
+  this.tours.forEach(function(tour){
+    toursHtml += `<li>${tour.tour_id}</li>`
+  })
+  return toursHtml
+}
+
 const getCustomers = () => {
   fetch('/customers.json')
       .then(res => res.json())
@@ -90,4 +109,29 @@ const getCustomers = () => {
         })
         $('.main').append('<br><br><a href="/customers/new" class="btn">Create a Customer</a>')
       })
+}
+
+const sortedCustomers = () => {
+  fetch('/customers.json')
+    .then(res => res.json())
+    .then(customers => {
+      $('.main').html('')
+      $('.main').append('<h1 class="center">Alphabatized Customers</h1><br><ul id="sort"></ul>')
+          const sorted = customers.sort(function(a,b){
+            let x = a.last_name.toLowerCase()
+            let y = b.last_name.toLowerCase()
+            if (x > y) {
+              return 1;
+            }
+            if (x < y) {
+              return -1;
+            }
+            return 0;  
+          })
+          sorted.forEach(customer => {
+            let newCustomer = new Customer(customer)
+            let customerHtml = newCustomer.formatIndex()
+            $("#sort").append(customerHtml)
+          })
+        })
 }
