@@ -126,7 +126,15 @@ const sortedCustomers = () => {
             if (x < y) {
               return -1;
             }
-            return 0;  
+            let s = a.first_name.toLowerCase()
+            let d = b.first_name.toLowerCase()
+            if (s > d){
+              return 1;
+            }
+            if (s < d) {
+              return -1;
+            }
+            return 0;
           })
           sorted.forEach(customer => {
             let newCustomer = new Customer(customer)
